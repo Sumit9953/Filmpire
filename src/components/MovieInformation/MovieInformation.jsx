@@ -8,7 +8,8 @@ import axios from 'axios'
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'
 import useStyles from './styles'
 import genreIcons from '../../assets/genres'
-import { useGetMovieQuery } from '../../services/TMBD'
+import { useGetMovieQuery ,  useGetRecommendationQuery} from '../../services/TMBD'
+import { MovieList } from '..'
 
 const MovieInformation = () => {
   const { id } = useParams();
@@ -17,6 +18,8 @@ const MovieInformation = () => {
   const dispatch = useDispatch();
   const isMovieFavorited = false;
   const isMovieWatchlisted = false;
+
+  const {data: recommendations , isFetching: isRecommendationsFetching} = useGetRecommendationQuery({list: '/recommendations',movie_id: id})
 
   const addToFavorites = () => {
 
@@ -42,7 +45,7 @@ const MovieInformation = () => {
       </Box>
     )
   }
-  console.log(data);
+  // console.log(data);
   return (
     <Grid container className={classes.containerSpaceAround}>
       <Grid item sm={12} lg={4} >
@@ -128,6 +131,22 @@ const MovieInformation = () => {
           </div>
         </Grid>
       </Grid>
+      <Box marginTop="5rem" width="100%">
+              <Typography variant="h3" gutterBottom align="center">
+              You might also like
+              </Typography>
+              {recommendations
+              ? <MovieList movies={recommendations} numberOfMovies={12} />
+              : <Box>Sorry, nothing was found.</Box>
+              }
+      </Box>
+      <Modal
+      closeAfterTransition
+      classNmae={classes.modal}
+      open={open}
+      >
+
+      </Modal>
     </Grid>
   )
 }
