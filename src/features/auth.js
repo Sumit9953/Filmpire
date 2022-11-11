@@ -6,7 +6,7 @@ const initialState = {
   sessionId: '',
 };
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
