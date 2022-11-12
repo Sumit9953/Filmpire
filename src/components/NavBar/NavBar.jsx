@@ -99,8 +99,7 @@ function NavBar()  {
               {!isMobile && <>MY Movies &nbsp;</>}
                <Avatar style = {{width: 30, height:30}} 
                alt="profile"
-               src = "https://pixabay.com/vectors/avatar-icon-placeholder-facebook-1577909/" 
-
+               src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                />
               </Button>
             )}

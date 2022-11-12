@@ -27,6 +27,9 @@ const Sidebar = ({setmobileOpen}) => {
   const {data , isFetching} = useGetGenresQuery();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+   setmobileOpen(false);
+  }, [genreIdOrCategoryName]);
 
   return (
    <>
